@@ -1,0 +1,543 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17983,        535]
+NotebookOptionsPosition[     16856,        490]
+NotebookOutlinePosition[     17190,        505]
+CellTagsIndexPosition[     17147,        502]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["ex 1 pp 111", "Section",
+ CellChangeTimes->{{3.682537969345718*^9, 3.682537973792836*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "\[Theta]", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"circle", "[", "\[Theta]_", "]"}], ":=", 
+  RowBox[{"(", 
+   RowBox[{"1", "+", 
+    SuperscriptBox["E", 
+     RowBox[{"I", "*", "\[Theta]"}]]}], ")"}]}]}], "Input",
+ CellChangeTimes->{{3.682538071254429*^9, 3.682538216327202*^9}, {
+  3.6825382577321167`*^9, 3.682538286089246*^9}, {3.6825383174832*^9, 
+  3.682538361262484*^9}, {3.682538407696677*^9, 3.682538432711059*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"angles", "=", 
+  RowBox[{"Range", "[", 
+   RowBox[{"0", ",", 
+    RowBox[{"2", "Pi"}], ",", 
+    RowBox[{"Pi", "/", "4"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.682538444722824*^9, 3.682538465362948*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", 
+   FractionBox["\[Pi]", "4"], ",", 
+   FractionBox["\[Pi]", "2"], ",", 
+   FractionBox[
+    RowBox[{"3", " ", "\[Pi]"}], "4"], ",", "\[Pi]", ",", 
+   FractionBox[
+    RowBox[{"5", " ", "\[Pi]"}], "4"], ",", 
+   FractionBox[
+    RowBox[{"3", " ", "\[Pi]"}], "2"], ",", 
+   FractionBox[
+    RowBox[{"7", " ", "\[Pi]"}], "4"], ",", 
+   RowBox[{"2", " ", "\[Pi]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.682538466116972*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"circle", "[", "angles", "]"}]], "Input",
+ CellChangeTimes->{{3.682538468350312*^9, 3.682538471558525*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"2", ",", 
+   RowBox[{"1", "+", 
+    SuperscriptBox["\[ExponentialE]", 
+     FractionBox[
+      RowBox[{"\[ImaginaryI]", " ", "\[Pi]"}], "4"]]}], ",", 
+   RowBox[{"1", "+", "\[ImaginaryI]"}], ",", 
+   RowBox[{"1", "+", 
+    SuperscriptBox["\[ExponentialE]", 
+     FractionBox[
+      RowBox[{"3", " ", "\[ImaginaryI]", " ", "\[Pi]"}], "4"]]}], ",", "0", 
+   ",", 
+   RowBox[{"1", "+", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"3", " ", "\[ImaginaryI]", " ", "\[Pi]"}], "4"]}]]}], ",", 
+   RowBox[{"1", "-", "\[ImaginaryI]"}], ",", 
+   RowBox[{"1", "+", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"\[ImaginaryI]", " ", "\[Pi]"}], "4"]}]]}], ",", "2"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.682538472174912*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Tooltip", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Re", "[", "#1", "]"}], ",", 
+         RowBox[{"Im", "[", "#1", "]"}]}], "}"}], "]"}], "&"}], ")"}], "/@", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", 
+        FractionBox[
+         RowBox[{"\[ImaginaryI]", " ", "\[Pi]"}], "4"]]}], ",", 
+      RowBox[{"1", "+", "\[ImaginaryI]"}], ",", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", 
+        FractionBox[
+         RowBox[{"3", " ", "\[ImaginaryI]", " ", "\[Pi]"}], "4"]]}], ",", "0",
+       ",", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"3", " ", "\[ImaginaryI]", " ", "\[Pi]"}], "4"]}]]}], ",", 
+      RowBox[{"1", "-", "\[ImaginaryI]"}], ",", 
+      RowBox[{"1", "+", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"\[ImaginaryI]", " ", "\[Pi]"}], "4"]}]]}], ",", "2"}], 
+     "}"}]}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]], "Input",
+ NumberMarks->False],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, 
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+      0.012833333333333334`], AbsoluteThickness[1.6], 
+      PointBox[{{2., 0.}, {1.7071067811865475`, 0.7071067811865476}, {1., 
+       1.}, {0.2928932188134525, 0.7071067811865476}, {0., 0.}, {
+       0.2928932188134525, -0.7071067811865476}, {1., -1.}, {
+       1.7071067811865475`, -0.7071067811865476}, {2., 0.}}]}, {}}, {
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 0.}}]},
+       RowBox[{"{", 
+         RowBox[{"2.`", ",", "0.`"}], "}"}]],
+      Annotation[#, {2., 0.}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1.7071067811865475`, 0.7071067811865476}}]},
+       RowBox[{"{", 
+         RowBox[{"1.7071067811865475`", ",", "0.7071067811865476`"}], "}"}]],
+      Annotation[#, {1.7071067811865475`, 0.7071067811865476}, "Tooltip"]& ], 
+     
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 1.}}]},
+       RowBox[{"{", 
+         RowBox[{"1.`", ",", "1.`"}], "}"}]],
+      Annotation[#, {1., 1.}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{0.2928932188134525, 0.7071067811865476}}]},
+       RowBox[{"{", 
+         RowBox[{"0.2928932188134525`", ",", "0.7071067811865476`"}], "}"}]],
+      Annotation[#, {0.2928932188134525, 0.7071067811865476}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{0., 0.}}]},
+       RowBox[{"{", 
+         RowBox[{"0.`", ",", "0.`"}], "}"}]],
+      Annotation[#, {0., 0.}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{0.2928932188134525, -0.7071067811865476}}]},
+       RowBox[{"{", 
+         RowBox[{"0.2928932188134525`", ",", 
+           RowBox[{"-", "0.7071067811865476`"}]}], "}"}]],
+      Annotation[#, {0.2928932188134525, -0.7071067811865476}, "Tooltip"]& ], 
+     
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., -1.}}]},
+       RowBox[{"{", 
+         RowBox[{"1.`", ",", 
+           RowBox[{"-", "1.`"}]}], "}"}]],
+      Annotation[#, {1., -1.}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1.7071067811865475`, -0.7071067811865476}}]},
+       RowBox[{"{", 
+         RowBox[{"1.7071067811865475`", ",", 
+           RowBox[{"-", "0.7071067811865476`"}]}], "}"}]],
+      Annotation[#, {1.7071067811865475`, -0.7071067811865476}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 0.}}]},
+       RowBox[{"{", 
+         RowBox[{"2.`", ",", "0.`"}], "}"}]],
+      Annotation[#, {2., 0.}, "Tooltip"]& ]}}, {}, {}, {{}, {}}},
+  AspectRatio->1,
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 2.}, {-1., 1.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.682538475624061*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ SuperscriptBox[
+  RowBox[{"circle", "[", "angles", "]"}], "2"]], "Input",
+ CellChangeTimes->{{3.682538547379075*^9, 3.6825385484029083`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"4", ",", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      SuperscriptBox["\[ExponentialE]", 
+       FractionBox[
+        RowBox[{"\[ImaginaryI]", " ", "\[Pi]"}], "4"]]}], ")"}], "2"], ",", 
+   RowBox[{"2", " ", "\[ImaginaryI]"}], ",", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      SuperscriptBox["\[ExponentialE]", 
+       FractionBox[
+        RowBox[{"3", " ", "\[ImaginaryI]", " ", "\[Pi]"}], "4"]]}], ")"}], 
+    "2"], ",", "0", ",", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{"3", " ", "\[ImaginaryI]", " ", "\[Pi]"}], "4"]}]]}], ")"}], 
+    "2"], ",", 
+   RowBox[{
+    RowBox[{"-", "2"}], " ", "\[ImaginaryI]"}], ",", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{"\[ImaginaryI]", " ", "\[Pi]"}], "4"]}]]}], ")"}], "2"], ",",
+    "4"}], "}"}]], "Output",
+ CellChangeTimes->{3.682538550393819*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Tooltip", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Re", "[", "#1", "]"}], ",", 
+         RowBox[{"Im", "[", "#1", "]"}]}], "}"}], "]"}], "&"}], ")"}], "/@", 
+    RowBox[{"{", 
+     RowBox[{"4", ",", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", 
+          FractionBox[
+           RowBox[{"\[ImaginaryI]", " ", "\[Pi]"}], "4"]]}], ")"}], "2"], ",", 
+      RowBox[{"2", " ", "\[ImaginaryI]"}], ",", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", 
+          FractionBox[
+           RowBox[{"3", " ", "\[ImaginaryI]", " ", "\[Pi]"}], "4"]]}], ")"}], 
+       "2"], ",", "0", ",", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"3", " ", "\[ImaginaryI]", " ", "\[Pi]"}], "4"]}]]}], 
+        ")"}], "2"], ",", 
+      RowBox[{
+       RowBox[{"-", "2"}], " ", "\[ImaginaryI]"}], ",", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"\[ImaginaryI]", " ", "\[Pi]"}], "4"]}]]}], ")"}], "2"], 
+      ",", "4"}], "}"}]}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]], "Input",
+ NumberMarks->False],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, 
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+      0.012833333333333334`], AbsoluteThickness[1.6], 
+      PointBox[{{4., 0.}, {2.414213562373095, 2.414213562373095}, {0., 
+       2.}, {-0.41421356237309503`, 0.41421356237309503`}, {0., 
+       0.}, {-0.41421356237309503`, -0.41421356237309503`}, {0., -2.}, {
+       2.414213562373095, -2.414213562373095}, {4., 0.}}]}, {}}, {
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 0.}}]},
+       RowBox[{"{", 
+         RowBox[{"4.`", ",", "0.`"}], "}"}]],
+      Annotation[#, {4., 0.}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2.414213562373095, 2.414213562373095}}]},
+       RowBox[{"{", 
+         RowBox[{"2.414213562373095`", ",", "2.414213562373095`"}], "}"}]],
+      Annotation[#, {2.414213562373095, 2.414213562373095}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{0., 2.}}]},
+       RowBox[{"{", 
+         RowBox[{"0.`", ",", "2.`"}], "}"}]],
+      Annotation[#, {0., 2.}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], 
+        PointBox[{{-0.41421356237309503`, 0.41421356237309503`}}]},
+       RowBox[{"{", 
+         RowBox[{
+           RowBox[{"-", "0.41421356237309503`"}], ",", 
+           "0.41421356237309503`"}], "}"}]],
+      Annotation[#, {-0.41421356237309503`, 0.41421356237309503`}, 
+       "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{0., 0.}}]},
+       RowBox[{"{", 
+         RowBox[{"0.`", ",", "0.`"}], "}"}]],
+      Annotation[#, {0., 0.}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], 
+        PointBox[{{-0.41421356237309503`, -0.41421356237309503`}}]},
+       RowBox[{"{", 
+         RowBox[{
+           RowBox[{"-", "0.41421356237309503`"}], ",", 
+           RowBox[{"-", "0.41421356237309503`"}]}], "}"}]],
+      Annotation[#, {-0.41421356237309503`, -0.41421356237309503`}, 
+       "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{0., -2.}}]},
+       RowBox[{"{", 
+         RowBox[{"0.`", ",", 
+           RowBox[{"-", "2.`"}]}], "}"}]],
+      Annotation[#, {0., -2.}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2.414213562373095, -2.414213562373095}}]},
+       RowBox[{"{", 
+         RowBox[{"2.414213562373095`", ",", 
+           RowBox[{"-", "2.414213562373095`"}]}], "}"}]],
+      Annotation[#, {2.414213562373095, -2.414213562373095}, "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 0.}}]},
+       RowBox[{"{", 
+         RowBox[{"4.`", ",", "0.`"}], "}"}]],
+      Annotation[#, {4., 0.}, "Tooltip"]& ]}}, {}, {}, {{}, {}}},
+  AspectRatio->1,
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{-0.41421356237309503`, 4.}, {-2.414213562373095, 
+   2.414213562373095}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.682538551948237*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"numbers", "=", 
+  RowBox[{"Range", "[", 
+   RowBox[{"1", ",", "100"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6825430492822533`*^9, 3.682543129427774*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "2", ",", "3", ",", "4", ",", "5", ",", "6", ",", "7", ",", "8", 
+   ",", "9", ",", "10", ",", "11", ",", "12", ",", "13", ",", "14", ",", "15",
+    ",", "16", ",", "17", ",", "18", ",", "19", ",", "20", ",", "21", ",", 
+   "22", ",", "23", ",", "24", ",", "25", ",", "26", ",", "27", ",", "28", 
+   ",", "29", ",", "30", ",", "31", ",", "32", ",", "33", ",", "34", ",", 
+   "35", ",", "36", ",", "37", ",", "38", ",", "39", ",", "40", ",", "41", 
+   ",", "42", ",", "43", ",", "44", ",", "45", ",", "46", ",", "47", ",", 
+   "48", ",", "49", ",", "50", ",", "51", ",", "52", ",", "53", ",", "54", 
+   ",", "55", ",", "56", ",", "57", ",", "58", ",", "59", ",", "60", ",", 
+   "61", ",", "62", ",", "63", ",", "64", ",", "65", ",", "66", ",", "67", 
+   ",", "68", ",", "69", ",", "70", ",", "71", ",", "72", ",", "73", ",", 
+   "74", ",", "75", ",", "76", ",", "77", ",", "78", ",", "79", ",", "80", 
+   ",", "81", ",", "82", ",", "83", ",", "84", ",", "85", ",", "86", ",", 
+   "87", ",", "88", ",", "89", ",", "90", ",", "91", ",", "92", ",", "93", 
+   ",", "94", ",", "95", ",", "96", ",", "97", ",", "98", ",", "99", ",", 
+   "100"}], "}"}]], "Output",
+ CellChangeTimes->{{3.682543098469211*^9, 3.682543129787582*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"test", "[", "x_", "]"}], ":=", 
+  RowBox[{"(", 
+   RowBox[{"1", "/", "x"}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.6825431365894003`*^9, 3.6825431494441357`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{"Total", "[", 
+   RowBox[{"test", "[", 
+    RowBox[{"Range", "[", 
+     RowBox[{"1", ",", "10000000"}], "]"}], "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6825431533310738`*^9, 3.682543202805129*^9}}],
+
+Cell[BoxData["16.69531136585985`"], "Output",
+ CellChangeTimes->{{3.682543157703453*^9, 3.682543200003213*^9}, 
+   3.682543264071612*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1916, 1041},
+WindowMargins->{{2, Automatic}, {2, Automatic}},
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 96, 1, 65, "Section"],
+Cell[679, 25, 475, 10, 63, "Input"],
+Cell[CellGroupData[{
+Cell[1179, 39, 233, 6, 35, "Input"],
+Cell[1415, 47, 473, 14, 51, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1925, 66, 130, 2, 32, "Input"],
+Cell[2058, 70, 854, 25, 50, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2949, 100, 1241, 36, 53, "Input"],
+Cell[4193, 138, 3733, 96, 357, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7963, 239, 156, 3, 36, "Input"],
+Cell[8122, 244, 1117, 35, 58, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9276, 284, 1535, 46, 63, "Input"],
+Cell[10814, 332, 3887, 102, 375, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14738, 439, 181, 4, 32, "Input"],
+Cell[14922, 445, 1274, 19, 52, "Output"]
+}, Open  ]],
+Cell[16211, 467, 199, 5, 33, "Input"],
+Cell[CellGroupData[{
+Cell[16435, 476, 253, 6, 32, "Input"],
+Cell[16691, 484, 137, 2, 63, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
