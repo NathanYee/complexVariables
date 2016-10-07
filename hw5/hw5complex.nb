@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8824,        316]
-NotebookOptionsPosition[      7539,        263]
-NotebookOutlinePosition[      7872,        278]
-CellTagsIndexPosition[      7829,        275]
+NotebookDataLength[     12430,        453]
+NotebookOptionsPosition[     10283,        369]
+NotebookOutlinePosition[     10618,        384]
+CellTagsIndexPosition[     10575,        381]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -246,7 +246,8 @@ Cell[BoxData[
  CellChangeTimes->{{3.684847354773815*^9, 3.6848473822338037`*^9}}],
 
 Cell[BoxData["True"], "Output",
- CellChangeTimes->{{3.68484737692704*^9, 3.6848473826871767`*^9}}]
+ CellChangeTimes->{{3.68484737692704*^9, 3.6848473826871767`*^9}, 
+   3.684848420949497*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -255,14 +256,119 @@ Cell[CellGroupData[{
 Cell["7ii", "Subsection",
  CellChangeTimes->{{3.6848473920157213`*^9, 3.684847396004819*^9}}],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ux", "+", 
+     RowBox[{"I", " ", "vx"}]}], "\[Equal]", "0"}], "&&", 
+   RowBox[{
+    RowBox[{"uv", "-", 
+     RowBox[{"I", " ", "uy"}]}], "\[Equal]", "0"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.684847873456135*^9, 3.684847912657753*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"uy", "\[Rule]", 
+     RowBox[{
+      RowBox[{"-", "\[ImaginaryI]"}], " ", "uv"}]}], ",", 
+    RowBox[{"vx", "\[Rule]", 
+     RowBox[{"\[ImaginaryI]", " ", "ux"}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.6848479134869747`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["7iii", "Subsection",
+ CellChangeTimes->{{3.6848480837894373`*^9, 3.684848091945414*^9}}],
+
 Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.684847517392956*^9, 3.6848475183812723`*^9}}]
+ CellChangeTimes->{{3.6848481113009443`*^9, 3.684848116085641*^9}}]
+}, Open  ]],
+
+Cell["8i", "Subsection",
+ CellChangeTimes->{{3.684848128856217*^9, 3.684848130388503*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Cauchy Riemann equations are only satisfied if f(z) is constant or v = \
+constant\
+\>", "Subsection",
+ CellChangeTimes->{{3.684848491178857*^9, 3.684848547119801*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"cauchyRiemann", "[", 
+  RowBox[{"0", ",", 
+   RowBox[{"x", " ", "I"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.684848403769341*^9, 3.684848431363995*^9}, {
+  3.6848484635008507`*^9, 3.68484846558105*^9}}],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{3.68484843207882*^9, 3.684848466128765*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"cauchyRiemann", "[", 
+  RowBox[{"0", ",", 
+   RowBox[{"y", " ", "I"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.684848472429781*^9, 3.6848484725141163`*^9}}],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{3.6848484730204144`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"cauchyRiemann", "[", 
+  RowBox[{"0", ",", 
+   RowBox[{"3", " ", "I"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6848484828861017`*^9, 3.684848483428582*^9}}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{3.684848484143118*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell["8ii", "Subsection",
+ CellChangeTimes->{{3.6848485966777287`*^9, 3.684848597153425*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["In the case of a circle, ", "Subsection",
+ CellChangeTimes->{{3.684848653248899*^9, 3.6848486561579514`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"cauchyRiemann", "[", 
+  RowBox[{
+   SuperscriptBox["x", "2"], ",", 
+   SuperscriptBox["y", "2"]}], "]"}]], "Input",
+ CellChangeTimes->{{3.684848623939095*^9, 3.6848486350688667`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"2", " ", "x"}], "\[Equal]", 
+  RowBox[{"2", " ", "y"}]}]], "Output",
+ CellChangeTimes->{{3.684848629655258*^9, 3.684848635605804*^9}}]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1280, 1376},
-WindowMargins->{{876, 404}, {-237, Automatic}},
+WindowMargins->{{0, Automatic}, {Automatic, 10}},
 FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -309,18 +415,47 @@ Cell[CellGroupData[{
 Cell[6684, 231, 89, 1, 44, "Subsection"],
 Cell[CellGroupData[{
 Cell[6798, 236, 361, 9, 80, "Input"],
-Cell[7162, 247, 98, 1, 30, "Output"]
+Cell[7162, 247, 124, 2, 30, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7309, 254, 93, 1, 44, "Subsection"],
-Cell[7405, 257, 94, 1, 30, "Input"]
+Cell[7335, 255, 93, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[7453, 260, 316, 9, 32, "Input"],
+Cell[7772, 271, 305, 9, 32, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8126, 286, 94, 1, 44, "Subsection"],
+Cell[8223, 289, 94, 1, 30, "Input"]
+}, Open  ]],
+Cell[8332, 293, 90, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[8447, 298, 177, 4, 37, "Subsection"],
+Cell[CellGroupData[{
+Cell[8649, 306, 229, 5, 32, "Input"],
+Cell[8881, 313, 95, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9013, 319, 181, 4, 32, "Input"],
+Cell[9197, 325, 76, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9310, 331, 181, 4, 32, "Input"],
+Cell[9494, 337, 73, 1, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[9594, 342, 93, 1, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[9712, 347, 115, 1, 36, "Subsection"],
+Cell[CellGroupData[{
+Cell[9852, 352, 207, 5, 42, "Input"],
+Cell[10062, 359, 169, 4, 32, "Output"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
