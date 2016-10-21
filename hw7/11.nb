@@ -1,0 +1,295 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7803,        285]
+NotebookOptionsPosition[      6742,        241]
+NotebookOutlinePosition[      7076,        256]
+CellTagsIndexPosition[      7033,        253]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ StyleBox[
+  RowBox[{
+   RowBox[{"Complex", " ", "Variables"}], " ", "-", " ", 
+   RowBox[{"HW", " ", "7"}], " ", "-", " ", 
+   RowBox[{"question", " ", "11"}]}], "Section"]], "Input",
+ Evaluatable->False,
+ CellChangeTimes->{{3.686055378142963*^9, 3.686055379926971*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["First just use ", "Subsection"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["z", "5"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "to find wrapping number |z|<2"
+}], "Subsection",
+ CellChangeTimes->{{3.68605188832228*^9, 3.68605191977431*^9}, {
+  3.686052490561824*^9, 3.686052493017088*^9}, {3.6860525746726007`*^9, 
+  3.686052580619094*^9}, {3.6860528159429398`*^9, 3.6860528380527983`*^9}, {
+  3.6860575886485577`*^9, 3.686057601690733*^9}, {3.686057646905136*^9, 
+  3.686057653452155*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sol", "=", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"2", 
+       SuperscriptBox["z", "5"]}], "\[Equal]", "0"}], "&&", 
+     RowBox[{
+      RowBox[{"Norm", "[", "z", "]"}], "<", "2"}]}], ",", "z"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.686050580880353*^9, 3.686050611791423*^9}, {
+   3.68605436813345*^9, 3.686054408283452*^9}, {3.6860574674437227`*^9, 
+   3.686057503129046*^9}, 3.686057574709639*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", "0"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.68605061255373*^9, {3.6860543773248587`*^9, 3.686054410453936*^9}, {
+   3.686057482004045*^9, 3.686057503653599*^9}, 3.6860575756719522`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"preImages", "=", 
+  RowBox[{"z", "/.", "sol"}]}]], "Input",
+ CellChangeTimes->{{3.686054420833912*^9, 3.686054428821639*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}]], "Output",
+ CellChangeTimes->{3.686054429064991*^9, 3.68605751198822*^9, 
+  3.6860575770644493`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"wrappingNumber", "=", 
+  RowBox[{"Length", "[", "preImages", "]"}]}]], "Input",
+ CellChangeTimes->{{3.686054431948571*^9, 3.686054445725936*^9}}],
+
+Cell[BoxData["5"], "Output",
+ CellChangeTimes->{
+  3.686054446349822*^9, {3.686057563550376*^9, 3.686057578038705*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Don\[CloseCurlyQuote]t really understand how to do it like the book says. I \
+can do it pretty easily just with an innequality\
+\>", "Subsection",
+ CellChangeTimes->{{3.686057666207382*^9, 3.686057682506507*^9}, {
+  3.686057839336194*^9, 3.686057862386456*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sol", "=", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"2", 
+        SuperscriptBox["z", "5"]}], "+", 
+       RowBox[{"8", "z"}], "-", "1"}], "\[Equal]", "0"}], "&&", 
+     RowBox[{"1", "<", 
+      RowBox[{"Norm", "[", "z", "]"}], "<", "2"}]}], ",", "z"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.686057694968248*^9, 3.6860577102846107`*^9}, 
+   3.686057816229307*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", 
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"8", " ", "#1"}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["#1", "5"]}]}], "&"}], ",", "2"}], "]"}]}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", 
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"8", " ", "#1"}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["#1", "5"]}]}], "&"}], ",", "3"}], "]"}]}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", 
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"8", " ", "#1"}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["#1", "5"]}]}], "&"}], ",", "4"}], "]"}]}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", 
+     RowBox[{"Root", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"8", " ", "#1"}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["#1", "5"]}]}], "&"}], ",", "5"}], "]"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.686057697844007*^9, 3.68605771064223*^9}, 
+   3.686057819439913*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"preImages", "=", 
+  RowBox[{"z", "/.", "sol"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{"8", " ", "#1"}], "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["#1", "5"]}]}], "&"}], ",", "2"}], "]"}], ",", 
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{"8", " ", "#1"}], "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["#1", "5"]}]}], "&"}], ",", "3"}], "]"}], ",", 
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{"8", " ", "#1"}], "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["#1", "5"]}]}], "&"}], ",", "4"}], "]"}], ",", 
+   RowBox[{"Root", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{"8", " ", "#1"}], "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["#1", "5"]}]}], "&"}], ",", "5"}], "]"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.686057829106983*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"wrappingNumber", "=", 
+  RowBox[{"Length", "[", "preImages", "]"}]}]], "Input"],
+
+Cell[BoxData["4"], "Output",
+ CellChangeTimes->{3.686057832084291*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1280, 1376},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 285, 7, 49, "Input",
+ Evaluatable->False],
+Cell[CellGroupData[{
+Cell[868, 31, 532, 12, 45, "Subsection"],
+Cell[CellGroupData[{
+Cell[1425, 47, 471, 13, 42, "Input"],
+Cell[1899, 62, 544, 15, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2480, 82, 149, 3, 32, "Input"],
+Cell[2632, 87, 193, 4, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2862, 96, 169, 3, 32, "Input"],
+Cell[3034, 101, 119, 2, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3202, 109, 271, 5, 45, "Subsection"],
+Cell[CellGroupData[{
+Cell[3498, 118, 448, 14, 42, "Input"],
+Cell[3949, 134, 1387, 48, 42, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5373, 187, 83, 2, 32, "Input"],
+Cell[5459, 191, 1042, 36, 42, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6538, 232, 103, 2, 32, "Input"],
+Cell[6644, 236, 70, 1, 30, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
