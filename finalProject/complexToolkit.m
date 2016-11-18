@@ -20,11 +20,12 @@
 
 
 (* ::Input::Initialization:: *)
-makeImage[pts_,expr_,pltRange1_,PltRange2_]:=Module[{},
+makeImage[pts_,expr_,pltRange1_:Automatic,PltRange2_:Automatic,colors_:1]:=Module[{},
+If[colors==1,colors=RGBColor[1,1,1],colors=colors];
 {
-Graphics[{White, Thick, Line[#&/@pts]}, PlotRange -> {{-pltRange1,pltRange1},{-pltRange1,pltRange1}}, Axes -> True, Background -> GrayLevel[.6], ImageSize -> {300,300}, AxesLabel -> {Style["x",Italic], Style["y",Italic]},ImagePadding->20],
+Graphics[MapThread[{#1, Thick, Line[#2]}&,{colors,pts}], PlotRange -> pltRange1, Axes -> True, Background -> White, ImageSize -> {300,300}, AxesLabel -> {Style["x",Italic], Style["y",Italic]},ImagePadding->20],
 
-Graphics[{White, Thick, Line[{Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr /. z -> #[[1]] + I #[[2]]]}& /@ #&/@pts]}, PlotRange -> {{-PltRange2,PltRange2},{-PltRange2,PltRange2}}, Axes -> True, Background -> RGBColor[.7, .5, .5], ImageSize -> {300,300}, AxesLabel -> {Style["u",Italic], Style["v",Italic]},ImagePadding->20]
+Graphics[MapThread[{#1, Thick, Line[{Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr /. z -> #[[1]] + I #[[2]]]}& /@ #2]}&,{colors,pts}], PlotRange -> PltRange2, Axes -> True, Background -> RGBColor[.7, .5, .5], ImageSize -> {300,300}, AxesLabel -> {Style["u",Italic], Style["v",Italic]},ImagePadding->20]
 }
 ]
 
@@ -36,6 +37,33 @@ lists=Table[{r Cos[ang],r Sin[ang]},{r,Range[smallRadius,largeRadius,stepSize]}]
 pts=Transpose[#]&/@lists;
 Return[pts]
 ]
+
+
+(* ::Input::Initialization:: *)
+makeVerticalPts[start_,end_,stepSize_,lineSpacing_]:=Module[{vertPts},
+newStep=stepSize+RandomReal[{.01,.02}];
+vertPts=Table[Table[{x,y},{y,start,end,newStep}],{x,start,end,lineSpacing}];
+Return[vertPts]
+]
+
+makeHorizontalPts[start_,end_,stepSize_,lineSpacing_]:=Module[{horiPts},
+newStep=stepSize+RandomReal[{.01,.02}];
+horiPts=Table[Table[{x,y},{x,start,end,newStep}],{y,start,end,lineSpacing}];
+Return[horiPts]
+]
+
+makeGridPts[start_,end_,stepSize_,lineSpacing_]:=Module[{vertPts,horiPts,pts},
+vertPts=makeVerticalPts[start,end,stepSize,lineSpacing];
+horiPts=makeHorizontalPts[start,end,stepSize,lineSpacing];
+pts=Join[horiPts,vertPts];
+Return[pts]
+]
+
+
+(* ::Input::Initialization:: *)
+makeRandomColors[pts_]:=Module[{colors},
+colors=RandomColor[Length[pts]];
+Return[colors]]
 
 
 
