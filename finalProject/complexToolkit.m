@@ -101,4 +101,81 @@ colors=RandomColor[Length[pts]];
 Return[colors]]
 
 
+(* ::Input::Initialization:: *)
+complexTo3D[point_]:=Module[{x,y,z,mix,X,Y,Z},
+x=point[[1]];
+y=point[[2]];
+mix=(2x+I 2y)/(1+x^2+y^2);
+X=Re[mix];
+Y=Im[mix];
+z=x+I y;
+Z=(Abs[z]^2-1)/(Abs[z]^2+1);
+Return[{X,Y,Z}]
+]
+
+complexPtsTo3D[points_]:=Module[{spherePts3D},
+spherePts3D=complexTo3D[#]&/@#&/@points;
+Return[spherePts3D]
+]
+
+
+(* ::Input::Initialization:: *)
+makeRiemannUnitCirclePts[numPts_]:=Module[
+{angles, pts},
+angles=N@Range[0Pi,2Pi,(2 Pi - 0Pi)/(numPts - 1)];
+pts=Table[{Cos[ang],0,Sin[ang]},{ang,angles}];
+Return[pts]
+]
+
+
+(* ::Input::Initialization:: *)
+riemannPointToComplexPlane[{X_,Y_,Z_}]:=Module[{sol,pair},
+sol=Solve[{x+I y==(X+I Y)/(1-Z)},{x\[Element]Reals,y\[Element]Reals}];
+pair=({x,y}/.sol)[[1]];
+Return[pair]
+]
+
+
+(* ::Input::Initialization:: *)
+makeSphereSpacedPoints[numPts_]:=Module[{pts,complexPts,realPts},
+pts=makeRiemannUnitCirclePts[numPts];
+complexPts=riemannPointToComplexPlane[#]&/@pts;
+realPts=complexPts[[All,1]];
+Return[realPts]
+]
+
+
+(* ::Input::Initialization:: *)
+makeHorizontalLines[min_,max_,ptsPerLine_,numLines_]:=Module[{horiPts,spherePts},
+spherePts=makeSphereSpacedPoints[ptsPerLine];
+horiPts=Table[Table[{x,y},{x,spherePts}],{y,min,max,(max-min)/(numLines-1)}];
+Return[horiPts]
+]
+makeVerticalLines[min_,max_,ptsPerLine_,numLines_]:=Module[{horiPts,spherePts},
+spherePts=makeSphereSpacedPoints[ptsPerLine];
+horiPts=Table[Table[{x,y},{y,spherePts}],{x,min,max,(max-min)/(numLines-1)}];
+Return[horiPts]
+]
+makeGrid[min_,max_,ptsPerLine_,numLines_]:=Module[{vertPts,horiPts,pts},
+vertPts=makeHorizontalLines[min,max,ptsPerLine,numLines];
+horiPts=makeVerticalLines[min,max,ptsPerLine,numLines];
+pts=Join[horiPts,vertPts];
+Return[pts]
+]
+
+
+(* ::Input::Initialization:: *)
+takingPts[takes_,pts_]:=Module[{newPts},
+newPts=Take[pts,#]&/@takes;
+Return[newPts]]
+
+cylinderPts[pts_]:=Module[{takes,returnPts},
+takes=Table[{x,x+1},{x,1,Dimensions[pts][[2]]-1}];
+returnPts=takingPts[takes,#]&/@pts
+]
+
+cylinders[pts_,radius_]:=Module[{},
+Return[Cylinder[#,radius]&/@#&/@cylinderPts[pts]]]
+
+
 
