@@ -32,7 +32,7 @@ Graphics[MapThread[{#1, Thick, Line[{Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr
 
 makeCirclePoints[smallRadius_,largeRadius_,stepSize_]:=Module[
 {ang, lists, pts},
-ang=Range[0Pi,2Pi,.001];
+ang=Range[0 Pi,2 Pi,.001];
 lists=Table[{r Cos[ang],r Sin[ang]},{r,Range[smallRadius,largeRadius,stepSize]}];
 pts=Transpose[#]&/@lists;
 Return[pts]
@@ -40,23 +40,58 @@ Return[pts]
 
 
 (* ::Input::Initialization:: *)
-makeVerticalPts[start_,end_,stepSize_,lineSpacing_]:=Module[{vertPts},
-newStep=stepSize+RandomReal[{.01,.02}];
-vertPts=Table[Table[{x,y},{y,start,end,newStep}],{x,start,end,lineSpacing}];
-Return[vertPts]
-]
+fSpace[min_,max_,steps_,f_: Log]:=Module[{},N[InverseFunction[f]/@Range[f@min,f@max,(f@max-f@min)/(steps-1)]]]
 
-makeHorizontalPts[start_,end_,stepSize_,lineSpacing_]:=Module[{horiPts},
-newStep=stepSize+RandomReal[{.01,.02}];
-horiPts=Table[Table[{x,y},{x,start,end,newStep}],{y,start,end,lineSpacing}];
+
+(* ::Input::Initialization:: *)
+
+
+makeVerticalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{horiPts},
+horiPts=Table[Table[{x,y},{y,Range[min,max,(max-min)/(ptsPerLine-1)]}],{x,min,max,(max-min)/(numLines-1)}];
 Return[horiPts]
 ]
 
-makeGridPts[start_,end_,stepSize_,lineSpacing_]:=Module[{vertPts,horiPts,pts},
-vertPts=makeVerticalPts[start,end,stepSize,lineSpacing];
-horiPts=makeHorizontalPts[start,end,stepSize,lineSpacing];
+makeHorizontalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{horiPts},
+horiPts=Table[Table[{x,y},{x,Range[min,max,(max-min)/(ptsPerLine-1)]}],{y,min,max,(max-min)/(numLines-1)}];
+Return[horiPts]
+]
+
+makeGridPts[min_,max_,ptsPerLine_,numLines_]:=Module[{vertPts,horiPts,pts},
+vertPts=makeVerticalPts[min,max,ptsPerLine,numLines];
+horiPts=makeHorizontalPts[min,max,ptsPerLine,numLines];
 pts=Join[horiPts,vertPts];
 Return[pts]
+]
+
+makeLogVerticalPts2[min_,max_,ptsPerLine_,numLines_]:=Module[{vertPts},
+vertPts=Table[Table[{x,y},{y,fSpace[min,max,ptsPerLine]}],{x,min,max,(max-min)/(numLines-1)}];
+Return[Re[vertPts]]
+]
+
+makeLogHorizontalPts2[min_,max_,ptsPerLine_,numLines_]:=Module[{horiPts},
+horiPts=Table[Table[{x,y},{x,fSpace[min,max,ptsPerLine]}],{y,min,max,(max-min)/(numLines-1)}];
+Return[Re[horiPts]]
+]
+
+makeLogGridPts[min_,max_,ptsPerLine_,numLines_]:=Module[{vertLogPts,horiLogPts,pts},
+vertLogPts=makeLogVerticalPts[min,max,ptsPerLine,numLines];
+horiLogPts=makeLogHorizontalPts[min,max,ptsPerLine,numLines];
+pts=Join[horiLogPts,vertLogPts];
+Return[pts]
+]
+
+makeLogVerticalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{posVertPts,negVertPts},
+posVertPts=Table[Table[{x,y},{y,fSpace[.001,max,Floor[ptsPerLine/2]]}],{x,min,max,(max-min)/(numLines-1)}];
+negVertPts=Table[Table[{x,y},{y,fSpace[min,-.001,Floor[ptsPerLine/2]]}],{x,min,max,(max-min)/(numLines-1)}];
+pts=MapThread[Join,{negVertPts,posVertPts}];
+Return[Re[pts]]
+]
+
+makeLogHorizontalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{posHoriPts,negHoriPts},
+posHoriPts=Table[Table[{x,y},{x,fSpace[.01,max,Floor[ptsPerLine/2]]}],{y,min,max,(max-min)/(numLines-1)}];
+negHoriPts=Table[Table[{x,y},{x,fSpace[min,-.01,Floor[ptsPerLine/2]]}],{y,min,max,(max-min)/(numLines-1)}];
+pts=MapThread[Join,{negHoriPts,posHoriPts}];
+Return[Re[pts]]
 ]
 
 
