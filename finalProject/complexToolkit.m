@@ -20,7 +20,12 @@
 
 
 (* ::Input::Initialization:: *)
-makeImage[pts_,expr_,pltRange1_:Automatic,PltRange2_:Automatic,colors_:1]:=Module[{},
+getImagePts[expr_,pts_]:=Module[{imgPts},
+imgPts={Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr /. z -> #[[1]] + I #[[2]]]}&/@#&/@pts;
+Return[imgPts]]
+getImagePts::usage="getImagePts[expr,pts] takes in an expression and a list of points, returns the image points"
+
+plotImage[pts_,expr_,pltRange1_:Automatic,PltRange2_:Automatic,colors_:1]:=Module[{},
 If[colors==1,colors=RGBColor[1,1,1],colors=colors];
 {
 Graphics[MapThread[{#1, Thick, Line[#2]}&,{colors,pts}], PlotRange -> pltRange1, Axes -> True, Background -> White, ImageSize -> {300,300}, AxesLabel -> {Style["x",Italic], Style["y",Italic]},ImagePadding->20],
@@ -28,6 +33,7 @@ Graphics[MapThread[{#1, Thick, Line[#2]}&,{colors,pts}], PlotRange -> pltRange1,
 Graphics[MapThread[{#1, Thick, Line[{Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr /. z -> #[[1]] + I #[[2]]]}& /@ #2]}&,{colors,pts}], PlotRange -> PltRange2, Axes -> True, Background -> White, ImageSize -> {300,300}, AxesLabel -> {Style["u",Italic], Style["v",Italic]},ImagePadding->20]
 }
 ]
+plotImage::usage="plotImage[pts,expr,pltRange1:Automatic,PltRange2:Automatic,colors:1] plotImage maps a list of points using an expression and plots both on the complex and image planes"
 
 
 makeCirclePoints[smallRadius_,largeRadius_,stepSize_]:=Module[
@@ -40,7 +46,8 @@ Return[pts]
 
 
 (* ::Input::Initialization:: *)
-fSpace[min_,max_,steps_,f_: Log]:=Module[{},N[InverseFunction[f]/@Range[f@min,f@max,(f@max-f@min)/(steps-1)]]]
+fSpace[min_,max_,numPts_,f_: Log]:=Module[{},N[InverseFunction[f]/@Range[f@min,f@max,(f@max-f@min)/(numPts-1)]]]
+fSpace::usage="fSpace[min, max, steps, Log] gives (default) log spaced points from min to max over a given number of points"
 
 
 (* ::Input::Initialization:: *)
@@ -162,6 +169,7 @@ horiPts=makeVerticalLines[min,max,ptsPerLine,numLines];
 pts=Join[horiPts,vertPts];
 Return[pts]
 ]
+makeGrid::usage="makeGrid[min,max,ptsPerLine,numLines] makes a grid of sphere spaced points given line bounds of min, max, ptsPerLine, and numLines"
 
 
 (* ::Input::Initialization:: *)
