@@ -36,10 +36,27 @@ Graphics[MapThread[{#1, Thick, Line[{Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr
 plotImage::usage="plotImage[pts,expr,pltRange1:Automatic,PltRange2:Automatic,colors:1] plotImage maps a list of points using an expression and plots both on the complex and image planes"
 
 
-makeCirclePoints[smallRadius_,largeRadius_,stepSize_]:=Module[
-{ang, lists, pts},
-ang=Range[0 Pi,2 Pi,.001];
-lists=Table[{r Cos[ang],r Sin[ang]},{r,Range[smallRadius,largeRadius,stepSize]}];
+makeCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_]:=Module[{ang, lists, pts},
+ang=Range[0 Pi,2 Pi,(2\[Pi]-0)/(ptsPerCircle-1)];
+lists=Table[{r Cos[ang],r Sin[ang]},{r,Range[smallRadius,largeRadius,(largeRadius-smallRadius)/(numCircles-1)]}];
+pts=Transpose[#]&/@lists;
+Return[pts]
+]
+
+
+(* ::Input::Initialization:: *)
+makeSphereSpacedCirclePoints[numCircles_,ptsPerCircle_]:=Module[{ang, lists, pts},
+ang=Range[0 Pi,2 Pi,(2\[Pi]-0)/(ptsPerCircle-1)];
+lists=Table[{r Cos[ang],r Sin[ang]},{r,makeSphereSpacedPoints[numCircles]}];
+pts=Transpose[#]&/@lists;
+Return[pts]
+]
+
+
+(* ::Input::Initialization:: *)
+makeExponentialSpacedCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_]:=Module[{ang, lists, pts},
+ang=Range[0 Pi,2 Pi,(2\[Pi]-0)/(ptsPerCircle-1)];
+lists=Table[{r Cos[ang],r Sin[ang]},{r,fSpace[smallRadius,largeRadius,numCircles]}];
 pts=Transpose[#]&/@lists;
 Return[pts]
 ]

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    136753,       2530]
-NotebookOptionsPosition[    133548,       2423]
-NotebookOutlinePosition[    134701,       2460]
-CellTagsIndexPosition[    134577,       2454]
+NotebookDataLength[    141530,       2658]
+NotebookOptionsPosition[    137722,       2533]
+NotebookOutlinePosition[    139115,       2576]
+CellTagsIndexPosition[    138946,       2569]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -158,15 +158,10 @@ Cell[BoxData[{
  RowBox[{"<<", "complexToolkit.m"}]}], "Code",
  CellChangeTimes->{{3.690299382046134*^9, 3.690299429098775*^9}, {
   3.690299508197402*^9, 3.690299535365757*^9}, {3.6903004786173487`*^9, 
-  3.690300482903036*^9}}]
-}, Open  ]],
+  3.690300482903036*^9}}],
 
-Cell[CellGroupData[{
-
-Cell[TextData[StyleBox["Next let\[CloseCurlyQuote]s test the the library - \
-use ? ", "Text"]], "Chapter",
- CellChangeTimes->{{3.690300499709584*^9, 3.690300521230693*^9}, {
-  3.690300742422484*^9, 3.690300750095306*^9}}],
+Cell[TextData[StyleBox["Next let's test the the library - use ? ", "Text"]], \
+"Text"],
 
 Cell[CellGroupData[{
 
@@ -180,8 +175,8 @@ Cell[BoxData[
  StyleBox["\<\"fSpace[min, max, steps, Log] gives (default) log spaced points \
 from min to max over a given number of points\"\>", "MSG"]], "Print", \
 "PrintUsage",
- CellChangeTimes->{3.690302048755206*^9},
- CellTags->"Info43690284048-6080592"]
+ CellChangeTimes->{3.6904908521794786`*^9},
+ CellTags->"Info43690472852-9895075"]
 }, Open  ]],
 
 Cell["or press ctr + shift + K to auto complete", "Text",
@@ -245,7 +240,8 @@ Cell[BoxData[
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{{3.690300408120615*^9, 3.690300418452284*^9}, {
    3.6903006082582493`*^9, 3.690300653857977*^9}, 3.6903012704981956`*^9, {
-   3.6903014109244967`*^9, 3.69030144516028*^9}, 3.690302048942587*^9}]
+   3.6903014109244967`*^9, 3.69030144516028*^9}, 3.690302048942587*^9, 
+   3.6904879474572363`*^9, 3.6904908523116837`*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -268,7 +264,8 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"{", "}"}]], "Output",
- CellChangeTimes->{{3.6903020387490597`*^9, 3.690302049024077*^9}}]
+ CellChangeTimes->{{3.6903020387490597`*^9, 3.690302049024077*^9}, 
+   3.6904879475317373`*^9, 3.690490852436256*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -278,6 +275,8 @@ Cell[BoxData[
    SuperscriptBox["z", "3"], "-", "1"}]}]], "Code",
  CellChangeTimes->{{3.690301914587925*^9, 3.6903019686614857`*^9}, {
   3.69030201495599*^9, 3.690302024980846*^9}}],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"map", "=", 
@@ -289,6 +288,18 @@ Cell[BoxData[
       RowBox[{"f", "'"}], "[", "z", "]"}]]}], ")"}]}]], "Code",
  CellChangeTimes->{{3.690302106999812*^9, 3.6903021437190113`*^9}, {
   3.6903023616743803`*^9, 3.690302366670611*^9}}],
+
+Cell[BoxData[
+ RowBox[{"z", "-", 
+  FractionBox[
+   RowBox[{
+    RowBox[{"-", "1"}], "+", 
+    SuperscriptBox["z", "3"]}], 
+   RowBox[{"3", " ", 
+    SuperscriptBox["z", "2"]}]]}]], "Output",
+ CellChangeTimes->{3.690487947608697*^9, 3.6904879985697107`*^9, 
+  3.6904908525180883`*^9}]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{
@@ -303,36 +314,105 @@ Cell[BoxData[
    3.690301694550825*^9}, {3.69030206306695*^9, 3.6903021040027447`*^9}, 
    3.690302358913115*^9, {3.690302392398448*^9, 3.690302440873315*^9}}],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "makeExponentialSpacedCirclePoints"}]], "Code",
+ CellChangeTimes->{{3.690490935807797*^9, 3.690490951119905*^9}, 
+   3.690491074968706*^9}],
+
+Cell[CellGroupData[{
+
+Cell["Notebook$$18$484803`makeExponentialSpacedCirclePoints", "Print", "PrintUsage",
+ CellChangeTimes->{3.690491075348446*^9},
+ CellTags->"Info293690473075-9895075"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"makeExponentialSpacedCirclePoints", "[", 
+          RowBox[{
+          "smallRadius_", ",", "largeRadius_", ",", "numCircles_", ",", 
+           "ptsPerCircle_"}], "]"}], ":=", 
+         RowBox[{"Module", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"ang", ",", "lists", ",", "pts"}], "}"}], ",", 
+           RowBox[{
+            RowBox[{"ang", "=", 
+             RowBox[{"Range", "[", 
+              RowBox[{
+               RowBox[{"0", " ", "\[Pi]"}], ",", 
+               RowBox[{"2", " ", "\[Pi]"}], ",", 
+               FractionBox[
+                RowBox[{
+                 RowBox[{"2", " ", "\[Pi]"}], "+", "0"}], 
+                RowBox[{"ptsPerCircle", "-", "1"}]]}], "]"}]}], ";", 
+            RowBox[{"lists", "=", 
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"r", " ", 
+                  RowBox[{"Cos", "[", "ang", "]"}]}], ",", 
+                 RowBox[{"r", " ", 
+                  RowBox[{"Sin", "[", "ang", "]"}]}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"r", ",", 
+                 RowBox[{"fSpace", "[", 
+                  RowBox[{
+                  "smallRadius", ",", "largeRadius", ",", "numCircles"}], 
+                  "]"}]}], "}"}]}], "]"}]}], ";", 
+            RowBox[{"pts", "=", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"Transpose", "[", "#1", "]"}], "&"}], ")"}], "/@", 
+              "lists"}]}], ";", 
+            RowBox[{"Return", "[", "pts", "]"}]}]}], "]"}]}]}
+      },
+      BaselinePosition->{Baseline, {1, 1}},
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{"Columns" -> {{
+           Scaled[0.999]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  Definition[$CellContext`makeExponentialSpacedCirclePoints],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.690491075472555*^9},
+ CellTags->"Info293690473075-9895075"]
+}, Open  ]]
+}, Open  ]],
+
 Cell[BoxData[
  RowBox[{
-  RowBox[{"plots", "=", 
-   RowBox[{"Flatten", "[", 
-    RowBox[{"{", "\n", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"ListPlot", "[", 
-        RowBox[{"gridPts", ",", 
-         RowBox[{"PlotRange", "\[Rule]", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}], ",", 
-         RowBox[{"PlotStyle", "\[Rule]", 
-          RowBox[{"PointSize", "[", ".02", "]"}]}], ",", 
-         RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}], "}"}], ",", "\n", 
-      RowBox[{"Table", "[", "\n", 
-       RowBox[{"(*", 
-        RowBox[{"Apply", " ", "map", " ", "to", " ", "grid", " ", "pts"}], 
-        "*)"}], " ", 
+  RowBox[{"gridPts", " ", "=", " ", 
+   RowBox[{"makeExponentialSpacedCirclePoints", "[", 
+    RowBox[{".1", ",", "5", ",", "10", ",", "100"}], "]"}]}], ";"}]], "Code",
+ InitializationCell->True,
+ CellChangeTimes->{{3.690490873142668*^9, 3.690490975611425*^9}, {
+  3.6904910647660103`*^9, 3.690491096791264*^9}, {3.690491414925261*^9, 
+  3.690491446066678*^9}, {3.690491503689413*^9, 3.690491508524938*^9}}],
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"range", "=", "5"}], "}"}], ",", "\n", 
+   RowBox[{
+    RowBox[{"plots", "=", 
+     RowBox[{"Flatten", "[", 
+      RowBox[{"{", "\n", 
        RowBox[{
-        RowBox[{
-         RowBox[{"gridPts", "=", 
-          RowBox[{"getImagePts", "[", 
-           RowBox[{"expr", ",", "gridPts"}], "]"}]}], ";", "\n", 
+        RowBox[{"{", 
          RowBox[{"ListPlot", "[", 
           RowBox[{"gridPts", ",", 
            RowBox[{"PlotRange", "\[Rule]", 
@@ -340,23 +420,51 @@ Cell[BoxData[
              RowBox[{
               RowBox[{"{", 
                RowBox[{
-                RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+                RowBox[{"-", "range"}], ",", "range"}], "}"}], ",", " ", 
               RowBox[{"{", 
                RowBox[{
-                RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}], ",", 
+                RowBox[{"-", "range"}], ",", "range"}], "}"}]}], "}"}]}], ",", 
            RowBox[{"PlotStyle", "\[Rule]", 
             RowBox[{"PointSize", "[", ".02", "]"}]}], ",", 
-           RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]}], 
-        "\[IndentingNewLine]", ",", 
-        RowBox[{"{", 
-         RowBox[{"n", ",", "1", ",", "36"}], "}"}]}], "]"}]}], "\n", "}"}], 
-    "]"}]}], ";"}]], "Code",
+           RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}], "}"}], ",", "\n", 
+        RowBox[{"Table", "[", "\n", 
+         RowBox[{"(*", 
+          RowBox[{"Apply", " ", "map", " ", "to", " ", "grid", " ", "pts"}], 
+          "*)"}], " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"gridPts", "=", 
+            RowBox[{"getImagePts", "[", 
+             RowBox[{"map", ",", "gridPts"}], "]"}]}], ";", "\n", 
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"gridPts", ",", 
+             RowBox[{"PlotRange", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "range"}], ",", "range"}], "}"}], ",", " ", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "range"}], ",", "range"}], "}"}]}], "}"}]}], 
+             ",", 
+             RowBox[{"PlotStyle", "\[Rule]", 
+              RowBox[{"PointSize", "[", ".02", "]"}]}], ",", 
+             RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"{", 
+           RowBox[{"n", ",", "1", ",", "36"}], "}"}]}], "]"}]}], "\n", "}"}], 
+      "]"}]}], ";"}]}], "\n", "]"}]], "Code",
  CellChangeTimes->{{3.6903024726264153`*^9, 3.690302528289936*^9}, {
   3.690302571011901*^9, 3.690302680898477*^9}, {3.690302711238488*^9, 
   3.690302756650626*^9}, {3.690302792104493*^9, 3.690302828970323*^9}, {
   3.690303003922866*^9, 3.6903030475358887`*^9}, {3.69030318492282*^9, 
   3.690303233449345*^9}, {3.690303268505124*^9, 3.690303274526622*^9}, {
-  3.69030332562395*^9, 3.690303328403388*^9}}],
+  3.69030332562395*^9, 3.690303328403388*^9}, {3.690487966457294*^9, 
+  3.690487966817108*^9}, {3.6904910110583973`*^9, 3.6904910196436*^9}, {
+  3.69049105034746*^9, 3.690491051979998*^9}, {3.690491168097334*^9, 
+  3.690491175818989*^9}, {3.690491208611554*^9, 3.690491216959787*^9}, {
+  3.690491295242655*^9, 3.690491375717677*^9}}],
 
 Cell[CellGroupData[{
 
@@ -381,11 +489,11 @@ Cell[BoxData[
     "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`n$$], 1, 37, 1}}, Typeset`size$$ = {
     360., {176., 184.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`n$29461$$ = 0}, 
+    Typeset`skipInitDone$$ = True, $CellContext`n$26496$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`n$$ = 1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`n$$, $CellContext`n$29461$$, 0]}, 
+        Hold[$CellContext`n$$, $CellContext`n$26496$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -407,7 +515,9 @@ Cell[BoxData[
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{{3.690302919324252*^9, 3.69030292955343*^9}, {
    3.690303208483324*^9, 3.6903032381394463`*^9}, 3.690303279451577*^9, 
-   3.690303336133585*^9}]
+   3.690303336133585*^9, 3.690487949852253*^9, 3.690488010653427*^9, 
+   3.6904908542364473`*^9, 3.690491026401947*^9, 3.69049141880269*^9, 
+   3.690491512437386*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -2422,8 +2532,8 @@ delenit augue duis dolore te feugait nulla facilisi.\
 }, Open  ]]
 },
 ScreenStyleEnvironment->"Working",
-WindowSize->{956, 1041},
-WindowMargins->{{2, Automatic}, {2, Automatic}},
+WindowSize->{2560, 1381},
+WindowMargins->{{251, Automatic}, {0, 32}},
 TaggingRules->{"SlideShow" -> True},
 CellContext->Notebook,
 FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
@@ -2435,26 +2545,32 @@ StyleDefinitions->FrontEnd`FileName[{"SlideShow"}, "Garnet.nb",
 (* Internal cache information *)
 (*CellTagsOutline
 CellTagsIndex->{
+ "Info293690473075-9895075"->{
+  Cell[11586, 325, 165, 2, 74, "Print",
+   CellTags->"Info293690473075-9895075"],
+  Cell[11754, 329, 2380, 61, 166, "Print",
+   CellTags->"Info293690473075-9895075"]},
+ "Info43690472852-9895075"->{
+  Cell[6490, 173, 261, 5, 67, "Print",
+   CellTags->"Info43690472852-9895075"]},
  "SlideShowHeader"->{
   Cell[580, 22, 4341, 97, 75, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"],
   Cell[5215, 134, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"],
-  Cell[9559, 254, 64, 1, 74, "SlideShowNavigationBar",
+  Cell[9444, 250, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"],
-  Cell[15436, 416, 64, 1, 74, "SlideShowNavigationBar",
+  Cell[19610, 526, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"],
-  Cell[15636, 425, 64, 1, 74, "SlideShowNavigationBar",
-   CellTags->"SlideShowHeader"]},
- "Info43690284048-6080592"->{
-  Cell[6659, 178, 259, 5, 58, "Print",
-   CellTags->"Info43690284048-6080592"]}
+  Cell[19810, 535, 64, 1, 74, "SlideShowNavigationBar",
+   CellTags->"SlideShowHeader"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"SlideShowHeader", 133999, 2437},
- {"Info43690284048-6080592", 134473, 2448}
+ {"Info293690473075-9895075", 138178, 2547},
+ {"Info43690472852-9895075", 138376, 2552},
+ {"SlideShowHeader", 138479, 2555}
  }
 *)
 (*NotebookFileOutline
@@ -2462,74 +2578,86 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 4341, 97, 75, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
-Cell[4924, 121, 156, 5, 451, "Title"],
-Cell[5083, 128, 95, 1, 128, "Subtitle"]
+Cell[4924, 121, 156, 5, 542, "Title"],
+Cell[5083, 128, 95, 1, 147, "Subtitle"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[5215, 134, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
 Cell[CellGroupData[{
-Cell[5304, 139, 106, 1, 135, "Section"],
-Cell[5413, 142, 264, 5, 97, "Text"],
-Cell[5680, 149, 142, 2, 79, "Code"],
-Cell[5825, 153, 334, 7, 110, "Code"]
+Cell[5304, 139, 106, 1, 154, "Section"],
+Cell[5413, 142, 264, 5, 68, "Text"],
+Cell[5680, 149, 142, 2, 90, "Code"],
+Cell[5825, 153, 334, 7, 121, "Code"],
+Cell[6162, 162, 86, 1, 68, "Text"],
+Cell[CellGroupData[{
+Cell[6273, 167, 214, 4, 84, "Code"],
+Cell[6490, 173, 261, 5, 67, "Print",
+ CellTags->"Info43690472852-9895075"]
 }, Open  ]],
+Cell[6766, 181, 153, 2, 68, "Text"],
 Cell[CellGroupData[{
-Cell[6196, 165, 221, 3, 60, "Chapter"],
-Cell[CellGroupData[{
-Cell[6442, 172, 214, 4, 73, "Code"],
-Cell[6659, 178, 259, 5, 58, "Print",
- CellTags->"Info43690284048-6080592"]
-}, Open  ]],
-Cell[6933, 186, 153, 2, 59, "Text"],
-Cell[CellGroupData[{
-Cell[7111, 192, 328, 7, 73, "Code"],
-Cell[7442, 201, 2056, 46, 252, "Output"]
+Cell[6944, 187, 328, 7, 84, "Code"],
+Cell[7275, 196, 2108, 47, 260, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[9559, 254, 64, 1, 74, "SlideShowNavigationBar",
+Cell[9444, 250, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
 Cell[CellGroupData[{
-Cell[9648, 259, 117, 1, 135, "Section"],
+Cell[9533, 255, 117, 1, 154, "Section"],
 Cell[CellGroupData[{
-Cell[9790, 264, 127, 2, 73, "Code"],
-Cell[9920, 268, 113, 2, 48, "Output"]
+Cell[9675, 260, 127, 2, 84, "Code"],
+Cell[9805, 264, 163, 3, 57, "Output"]
 }, Open  ]],
-Cell[10048, 273, 242, 6, 79, "Code"],
-Cell[10293, 281, 323, 9, 117, "Code"],
-Cell[10619, 292, 494, 11, 64, "Input",
+Cell[9983, 270, 242, 6, 90, "Code"],
+Cell[CellGroupData[{
+Cell[10250, 280, 323, 9, 128, "Code"],
+Cell[10576, 291, 284, 9, 91, "Output"]
+}, Open  ]],
+Cell[10875, 303, 494, 11, 73, "Input",
  InitializationCell->True],
-Cell[11116, 305, 2153, 53, 301, "Code"],
 Cell[CellGroupData[{
-Cell[13294, 362, 371, 10, 73, "Code"],
-Cell[13668, 374, 1707, 35, 487, "Output"]
+Cell[11394, 318, 167, 3, 84, "Code"],
+Cell[CellGroupData[{
+Cell[11586, 325, 165, 2, 74, "Print",
+ CellTags->"Info293690473075-9895075"],
+Cell[11754, 329, 2380, 61, 166, "Print",
+ CellTags->"Info293690473075-9895075"]
+}, Open  ]]
+}, Open  ]],
+Cell[14161, 394, 431, 8, 84, "Code",
+ InitializationCell->True],
+Cell[14595, 404, 2707, 62, 386, "Code"],
+Cell[CellGroupData[{
+Cell[17327, 470, 371, 10, 84, "Code"],
+Cell[17701, 482, 1848, 37, 496, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15436, 416, 64, 1, 74, "SlideShowNavigationBar",
+Cell[19610, 526, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
-Cell[15503, 419, 96, 1, 135, "Section"]
+Cell[19677, 529, 96, 1, 154, "Section"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15636, 425, 64, 1, 74, "SlideShowNavigationBar",
+Cell[19810, 535, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
 Cell[CellGroupData[{
-Cell[15725, 430, 50, 0, 107, "Subsection"],
-Cell[15778, 432, 307, 5, 211, "Text"],
+Cell[19899, 540, 50, 0, 126, "Subsection"],
+Cell[19952, 542, 307, 5, 106, "Text"],
 Cell[CellGroupData[{
-Cell[16110, 441, 52, 0, 84, "Subsubsection"],
+Cell[20284, 551, 52, 0, 99, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[16187, 445, 406, 12, 91, "Input"],
-Cell[16596, 459, 56660, 958, 242, "Output"]
+Cell[20361, 555, 406, 12, 63, "Input"],
+Cell[20770, 569, 56660, 958, 249, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[73317, 1424, 50, 0, 107, "Subsection"],
-Cell[73370, 1426, 60150, 993, 190, "SideCaptionArray"]
+Cell[77491, 1534, 50, 0, 107, "Subsection"],
+Cell[77544, 1536, 60150, 993, 190, "SideCaptionArray"]
 }, Open  ]]
 }, Open  ]]
 }
