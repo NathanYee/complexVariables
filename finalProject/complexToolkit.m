@@ -19,11 +19,73 @@
 
 
 
+makeCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_]:=Module[{ang, lists, pts},
+ang=Range[0 Pi,2 Pi,(2\[Pi]-0)/(ptsPerCircle-1)];
+lists=Table[{r Cos[ang],r Sin[ang]},{r,Range[smallRadius,largeRadius,(largeRadius-smallRadius)/(numCircles-1)]}];
+pts=Transpose[#]&/@lists;
+Return[pts]
+]
+makeCirclePoints::usage="makeCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_] makeCirclePoints returns expanding circles given smallest radius, largest radius, step size, and number of points per circle. The constant step size dictates that the radius of the circles increases by a constant step size per circle";
+
+
+(* ::Input::Initialization:: *)
+makeExponentialSpacedCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_]:=Module[{ang, lists, pts},
+ang=Range[0 Pi,2 Pi,(2\[Pi]-0)/(ptsPerCircle-1)];
+lists=Table[{r Cos[ang],r Sin[ang]},{r,fSpace[smallRadius,largeRadius,numCircles]}];
+pts=Transpose[#]&/@lists;
+Return[pts]
+]
+makeExponentialSpacedCirclePoints::usage="makeExponentialSpacedCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_] makeExponentialSpacedCirclePoints returns expanding circles given smallest radius, largest radius, number of circles, and number of points per circle. The number of circles dictates that the circles be spaced exponentially within the largestRadius - smallestRadius range";
+
+
+(* ::Input::Initialization:: *)
+makeSphereSpacedCirclePoints[numCircles_,ptsPerCircle_]:=Module[{ang, lists, pts},
+ang=Range[0 Pi,2 Pi,(2\[Pi]-0)/(ptsPerCircle-1)];
+lists=Table[{r Cos[ang],r Sin[ang]},{r,makeSphereSpacedPoints[numCircles]}];
+pts=Transpose[#]&/@lists;
+Return[pts]
+]
+makeSphereSpacedCirclePoints::usage="makeSphereSpacedCirclePoints[numCircles_,ptsPerCircle_] makeSphereSpacedCirclePoints returns circles based on inverse stereographic projection given a number of circles, and the number of points per circle";
+
+
+(* ::Input::Initialization:: *)
+fSpace[min_,max_,numPts_,f_: Log]:=Module[{},N[InverseFunction[f]/@Range[f@min,f@max,(f@max-f@min)/(numPts-1)]]]
+fSpace::usage="fSpace[min, max, steps, Log] gives inverse f (default Log) spaced points from min to max over a given number of points";
+
+
+(* ::Input::Initialization:: *)
+makeRiemannRealAxis[numPts_]:=Module[
+{angles, pts},
+angles=N@Range[0Pi,2Pi,(2 Pi - 0Pi)/(numPts - 1)];
+pts=Table[{Cos[ang],0,Sin[ang]},{ang,angles}];
+Return[pts]
+]
+makeRiemannRealAxis::usage="makeRiemannRealAxis[numPts_] makeRiemannRealAxis returns equally spaced points around the positive real axis on the Riemann Sphere";
+
+
+riemannPointToComplexPlane[{X_,Y_,Z_}]:=Module[{sol,pair},
+sol=Solve[{x+I y==(X+I Y)/(1-Z)},{x\[Element]Reals,y\[Element]Reals}];
+pair=({x,y}/.sol)[[1]];
+Return[pair]
+]
+riemannPointToComplexPlane::usage="riemannPointToComplexPlane[{X_,Y_,Z_}] riemannPointToComplexPlane returns the inverse stereographic projection of a point distance 1 from the origin in 3D space";
+
+
+(* ::Input::Initialization:: *)
+makeSphereSpacedPoints[numPts_]:=Module[{pts,complexPts,realPts},
+pts=makeRiemannRealAxis[numPts];
+complexPts=riemannPointToComplexPlane[#]&/@pts;
+realPts=complexPts[[All,1]];
+Return[realPts]
+]
+makeSphereSpacedPoints::usage="makeSphereSpacedPoints[numPts_] makeSphereSpacedPoints returns the inverse stereographic projection of points around the positive real axis on the Riemann Sphere. It gets the positive real axis of the Riemann Sphere by calling makeRiemannRealAxis. It finds the inverse stereographic projection of the points by mapping riemannPointToComplexPlane onto each point";
+
+
 (* ::Input::Initialization:: *)
 getImagePts[expr_,pts_]:=Module[{imgPts},
 imgPts={Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr /. z -> #[[1]] + I #[[2]]]}&/@#&/@pts;
 Return[imgPts]]
-getImagePts::usage="getImagePts[expr,pts] takes in an expression and a list of points, returns the image points"
+getImagePts::usage="getImagePts[expr[z],pts] returns the image points given takes in an expression of z and a list of lists of lists of points";
 
 
 (* ::Input::Initialization:: *)
@@ -35,43 +97,10 @@ Graphics[MapThread[{#1, Thick, Line[#2]}&,{colors,pts}], PlotRange -> pltRange1,
 Graphics[MapThread[{#1, Thick, Line[{Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr /. z -> #[[1]] + I #[[2]]]}& /@ #2]}&,{colors,pts}], PlotRange -> PltRange2, Axes -> True, Background -> White, ImageSize -> {300,300}, AxesLabel -> {Style["u",Italic], Style["v",Italic]},ImagePadding->20]
 }
 ]
-plotImage::usage="plotImage[pts,expr,pltRange1:Automatic,PltRange2:Automatic,colors:1] plotImage maps a list of points using an expression and plots both on the complex and image planes"
+plotImage::usage="plotImage[pts,expr,pltRange1:Automatic,PltRange2:Automatic,colors:1] returns a list containing the complex and image plots given a list of lists of lists of points, an expression of z, two plot ranges (can be Automatic), and a list of colors";
 
 
-makeCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_]:=Module[{ang, lists, pts},
-ang=Range[0 Pi,2 Pi,(2\[Pi]-0)/(ptsPerCircle-1)];
-lists=Table[{r Cos[ang],r Sin[ang]},{r,Range[smallRadius,largeRadius,(largeRadius-smallRadius)/(numCircles-1)]}];
-pts=Transpose[#]&/@lists;
-Return[pts]
-]
-
-
-(* ::Input::Initialization:: *)
-makeSphereSpacedCirclePoints[numCircles_,ptsPerCircle_]:=Module[{ang, lists, pts},
-ang=Range[0 Pi,2 Pi,(2\[Pi]-0)/(ptsPerCircle-1)];
-lists=Table[{r Cos[ang],r Sin[ang]},{r,makeSphereSpacedPoints[numCircles]}];
-pts=Transpose[#]&/@lists;
-Return[pts]
-]
-
-
-(* ::Input::Initialization:: *)
-makeExponentialSpacedCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_]:=Module[{ang, lists, pts},
-ang=Range[0 Pi,2 Pi,(2\[Pi]-0)/(ptsPerCircle-1)];
-lists=Table[{r Cos[ang],r Sin[ang]},{r,fSpace[smallRadius,largeRadius,numCircles]}];
-pts=Transpose[#]&/@lists;
-Return[pts]
-]
-
-
-(* ::Input::Initialization:: *)
-fSpace[min_,max_,numPts_,f_: Log]:=Module[{},N[InverseFunction[f]/@Range[f@min,f@max,(f@max-f@min)/(numPts-1)]]]
-fSpace::usage="fSpace[min, max, steps, Log] gives (default) log spaced points from min to max over a given number of points"
-
-
-(* ::Input::Initialization:: *)
-
-
+(* ::Code::Initialization:: *)
 makeVerticalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{horiPts},
 horiPts=Table[Table[{x,y},{y,Range[min,max,(max-min)/(ptsPerLine-1)]}],{x,min,max,(max-min)/(numLines-1)}];
 Return[horiPts]
@@ -89,6 +118,7 @@ pts=Join[horiPts,vertPts];
 Return[pts]
 ]
 
+
 makeLogVerticalPts2[min_,max_,ptsPerLine_,numLines_]:=Module[{vertPts},
 vertPts=Table[Table[{x,y},{y,fSpace[min,max,ptsPerLine]}],{x,min,max,(max-min)/(numLines-1)}];
 Return[Re[vertPts]]
@@ -105,6 +135,7 @@ horiLogPts=makeLogHorizontalPts[min,max,ptsPerLine,numLines];
 pts=Join[horiLogPts,vertLogPts];
 Return[pts]
 ]
+
 
 makeLogVerticalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{posVertPts,negVertPts,pts},
 posVertPts=Table[Table[{x,y},{y,fSpace[.001,max,Floor[ptsPerLine/2]]}],{x,min,max,(max-min)/(numLines-1)}];
@@ -126,8 +157,6 @@ makeRandomColors[pts_]:=Module[{colors},
 colors=RandomColor[Length[pts]];
 Return[colors]]
 
-
-(* ::Input::Initialization:: *)
 makeColorGradient[pts_]:=Module[{colors},
 colors=Table[RGBColor[.5,x,.7],{x,.1,.9,(.9-.1)/(Length[pts]-1)}];
 Return[colors]]
@@ -145,37 +174,9 @@ Z=(Abs[z]^2-1)/(Abs[z]^2+1);
 Return[{X,Y,Z}]
 ]
 
-
-(* ::Input::Initialization:: *)
 complexPtsTo3D[points_]:=Module[{spherePts3D},
 spherePts3D=complexTo3D[#]&/@#&/@points;
 Return[spherePts3D]
-]
-
-
-(* ::Input::Initialization:: *)
-makeRiemannUnitCirclePts[numPts_]:=Module[
-{angles, pts},
-angles=N@Range[0Pi,2Pi,(2 Pi - 0Pi)/(numPts - 1)];
-pts=Table[{Cos[ang],0,Sin[ang]},{ang,angles}];
-Return[pts]
-]
-
-
-(* ::Input::Initialization:: *)
-riemannPointToComplexPlane[{X_,Y_,Z_}]:=Module[{sol,pair},
-sol=Solve[{x+I y==(X+I Y)/(1-Z)},{x\[Element]Reals,y\[Element]Reals}];
-pair=({x,y}/.sol)[[1]];
-Return[pair]
-]
-
-
-(* ::Input::Initialization:: *)
-makeSphereSpacedPoints[numPts_]:=Module[{pts,complexPts,realPts},
-pts=makeRiemannUnitCirclePts[numPts];
-complexPts=riemannPointToComplexPlane[#]&/@pts;
-realPts=complexPts[[All,1]];
-Return[realPts]
 ]
 
 
