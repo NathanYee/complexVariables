@@ -257,24 +257,29 @@ takingPts::usage="takingPts[takes_,pts_] returns a list of taken points
 given a list of takes and a list of points";
 
 
-cylinderPts[pts_]:=Module[{takes,returnPts},
+cylinderPts[pts_]:=Module[{takes},
 takes=Table[{x,x+1},{x,1,Dimensions[pts][[2]]-1}];
-returnPts=takingPts[takes,#]&/@pts
+Return[takingPts[takes,#]&/@pts]
 ]
-cylinderPts::usage="cylinderPts[pts_] returns a list of taken points ready to";
+cylinderPts::usage="cylinderPts[pts_] returns a list of taken points ready to be converted to cylinders";
 
 
 (* ::Input::Initialization:: *)
 cylinders[pts_,radius_]:=Module[{},
 Return[Cylinder[#,radius]&/@#&/@cylinderPts[pts]]]
+cylinders::usage="cylinders[pts_,radius_] returns cylinders linearly along the path of the list of points with specified radius"
 
 
 (* ::Input::Initialization:: *)
 tubes[pts_,radius_]:=Module[{},Tube[#,radius]&/@complexPtsTo3D[pts]]
+tubes::usage="tubes[pts_,radius_] returns tubes linearly
+ along the path of the list of points with specified radius. This is
+sometimes used as it gives a better result than cylinders but is less
+reliable"
 
 
 (* ::Input::Initialization:: *)
-makeNewtonMethodAnimation[plotRange_,map_,depth_,points_]:=Module[{localPts},
+makeNewtonMethodAnimation[plotRange_,map_,depth_,points_]:=Module[{localPts,plots},
 localPts=points;
 plots=Flatten[{
 {ListPlot[localPts,PlotRange->{{-plotRange,plotRange}, {-plotRange,plotRange}},PlotStyle->PointSize[.02],AspectRatio->1,ImageSize->Large]},
