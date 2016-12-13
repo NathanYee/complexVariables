@@ -25,6 +25,8 @@ imgPts={Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr /. z -> #[[1]] + I #[[2]]]}&
 Return[imgPts]]
 getImagePts::usage="getImagePts[expr,pts] takes in an expression and a list of points, returns the image points"
 
+
+(* ::Input::Initialization:: *)
 plotImage[pts_,expr_,pltRange1_:Automatic,PltRange2_:Automatic,colors_:1]:=Module[{},
 If[colors==1,colors=RGBColor[1,1,1],colors=colors];
 {
@@ -104,14 +106,14 @@ pts=Join[horiLogPts,vertLogPts];
 Return[pts]
 ]
 
-makeLogVerticalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{posVertPts,negVertPts},
+makeLogVerticalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{posVertPts,negVertPts,pts},
 posVertPts=Table[Table[{x,y},{y,fSpace[.001,max,Floor[ptsPerLine/2]]}],{x,min,max,(max-min)/(numLines-1)}];
 negVertPts=Table[Table[{x,y},{y,fSpace[min,-.001,Floor[ptsPerLine/2]]}],{x,min,max,(max-min)/(numLines-1)}];
 pts=MapThread[Join,{negVertPts,posVertPts}];
 Return[Re[pts]]
 ]
 
-makeLogHorizontalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{posHoriPts,negHoriPts},
+makeLogHorizontalPts[min_,max_,ptsPerLine_,numLines_]:=Module[{posHoriPts,negHoriPts,pts},
 posHoriPts=Table[Table[{x,y},{x,fSpace[.01,max,Floor[ptsPerLine/2]]}],{y,min,max,(max-min)/(numLines-1)}];
 negHoriPts=Table[Table[{x,y},{x,fSpace[min,-.01,Floor[ptsPerLine/2]]}],{y,min,max,(max-min)/(numLines-1)}];
 pts=MapThread[Join,{negHoriPts,posHoriPts}];
@@ -122,6 +124,12 @@ Return[Re[pts]]
 (* ::Input::Initialization:: *)
 makeRandomColors[pts_]:=Module[{colors},
 colors=RandomColor[Length[pts]];
+Return[colors]]
+
+
+(* ::Input::Initialization:: *)
+makeColorGradient[pts_]:=Module[{colors},
+colors=Table[RGBColor[.5,x,.7],{x,.1,.9,(.9-.1)/(Length[pts]-1)}];
 Return[colors]]
 
 
@@ -137,6 +145,8 @@ Z=(Abs[z]^2-1)/(Abs[z]^2+1);
 Return[{X,Y,Z}]
 ]
 
+
+(* ::Input::Initialization:: *)
 complexPtsTo3D[points_]:=Module[{spherePts3D},
 spherePts3D=complexTo3D[#]&/@#&/@points;
 Return[spherePts3D]
@@ -190,6 +200,10 @@ makeGrid::usage="makeGrid[min,max,ptsPerLine,numLines] makes a grid of sphere sp
 
 
 (* ::Input::Initialization:: *)
+tubes[pts_,radius_]:=Module[{},Tube[#,radius]&/@complexPtsTo3D[pts]]
+
+
+(* ::Input::Initialization:: *)
 takingPts[takes_,pts_]:=Module[{newPts},
 newPts=Take[pts,#]&/@takes;
 Return[newPts]]
@@ -201,6 +215,20 @@ returnPts=takingPts[takes,#]&/@pts
 
 cylinders[pts_,radius_]:=Module[{},
 Return[Cylinder[#,radius]&/@#&/@cylinderPts[pts]]]
+
+
+(* ::Input::Initialization:: *)
+makeNewtonMethodAnimation[plotRange_,map_,depth_,points_]:=Module[{localPts},
+localPts=points;
+plots=Flatten[{
+{ListPlot[localPts,PlotRange->{{-plotRange,plotRange}, {-plotRange,plotRange}},PlotStyle->PointSize[.02],AspectRatio->1,ImageSize->Large]},
+Table[
+(*Apply map to grid pts*) localPts=getImagePts[map,localPts];
+ListPlot[localPts,PlotRange->{{-plotRange,plotRange}, {-plotRange,plotRange}},PlotStyle->PointSize[.02],AspectRatio->1,ImageSize->Large]
+,{n,1,depth}]
+}];
+Return[Manipulate[plots[[n]],{n,1,Length[plots],1}]]]
+makeNewtonMethodAnimation::usage="makeNewtonMethodAnimation[plotRange,map,depth,points] makes animation of successive mappings";
 
 
 
