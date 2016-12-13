@@ -39,7 +39,8 @@ sol=Solve[{x+I y==(X+I Y)/(1-Z)},{x\[Element]Reals,y\[Element]Reals}];
 pair=({x,y}/.sol)[[1]];
 Return[pair]
 ]
-riemannPointToComplexPlane::usage="riemannPointToComplexPlane[{X_,Y_,Z_}] riemannPointToComplexPlane returns the inverse stereographic projection of a point distance 1 from the origin in 3D space";
+riemannPointToComplexPlane::usage="riemannPointToComplexPlane[{X_,Y_,Z_}] 
+riemannPointToComplexPlane returns the inverse stereographic projection of a point distance 1 from the origin in 3D space";
 
 
 (* ::Input::Initialization:: *)
@@ -58,7 +59,9 @@ lists=Table[{r Cos[ang],r Sin[ang]},{r,Range[smallRadius,largeRadius,(largeRadiu
 pts=Transpose[#]&/@lists;
 Return[pts]
 ]
-makeCirclePoints::usage="makeCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_] makeCirclePoints returns expanding circles given smallest radius, largest radius, step size, and number of points per circle. The constant step size dictates that the radius of the circles increases by a constant step size per circle";
+makeCirclePoints::usage="makeCirclePoints[smallRadius_,largeRadius_,numCircles_,ptsPerCircle_] 
+makeCirclePoints returns expanding circles given smallest radius, largest radius, step size, and number of points per circle. 
+The constant step size dictates that the radius of the circles increases by a constant step size per circle";
 
 
 (* ::Input::Initialization:: *)
@@ -79,23 +82,6 @@ pts=Transpose[#]&/@lists;
 Return[pts]
 ]
 makeSphereSpacedCirclePoints::usage="makeSphereSpacedCirclePoints[numCircles_,ptsPerCircle_] makeSphereSpacedCirclePoints returns circles based on inverse stereographic projection given a number of circles, and the number of points per circle";
-
-
-(* ::Input::Initialization:: *)
-getImagePts[expr_,pts_]:=Module[{imgPts},
-imgPts={Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr /. z -> #[[1]] + I #[[2]]]}&/@#&/@pts;
-Return[imgPts]]
-getImagePts::usage="getImagePts[expr[z],pts] returns the image points given takes in an expression of z and a list of lists of lists of points";
-
-
-(* ::Input::Initialization:: *)
-plotImage[pts_,expr_,pltRange1_: Automatic,PltRange2_: Automatic,colors_: 1]:=Module[{},
-If[colors==1,colors=RGBColor[1,1,1],colors=colors];
-{
-Graphics[MapThread[{#1,Thick,Line[#2]}&,{colors,pts}],PlotRange->pltRange1,Axes->True,Background->White,ImageSize->{300,300},AxesLabel->{Style["x",Italic],Style["y",Italic]},ImagePadding->20],Graphics[MapThread[{#1,Thick,Line[{Re[expr/.z->#[[1]]+I #[[2]]],Im[expr/.z->#[[1]]+I #[[2]]]}&/@#2]}&,{colors,pts}],PlotRange->PltRange2,Axes->True,Background->White,ImageSize->{300,300},AxesLabel->{Style["u",Italic],Style["v",Italic]},ImagePadding->20]
-}
-]
-plotImage::usage="plotImage[pts,expr,pltRange1:Automatic,PltRange2:Automatic,colors:1] returns a list containing the complex and image plots given a list of lists of lists of points, an expression of z, two plot ranges (can be Automatic), and a list of colors. Note that plotImage doesn't call getImagePts so we can MapThread with color gradients";
 
 
 (* ::Input::Initialization:: *)
@@ -123,8 +109,10 @@ pts=Join[horiPts,vertPts];
 Return[pts]
 ]
 makeGridPts::usage="makeGridPts[minX_,maxX_,minY_,maxY_,ptsPerLine_,numLines_] 
-returns numLines number of vertical of equally spaced points lines starting from minX to maxX with length maxY-minY with ptsPerLine number of points per line and 
-returns numLines number of horizontal of equally spaced points lines starting from minY to maxY with length maxX-minX with ptsPerLine number of points per line.
+returns numLines number of vertical of equally spaced points lines starting from minX to maxX with 
+length maxY-minY with ptsPerLine number of points per line and 
+returns numLines number of horizontal of equally spaced points lines starting from minY to maxY with 
+length maxX-minX with ptsPerLine number of points per line.
 NOTE: enter args as if doing horizontal line";
 
 
@@ -143,7 +131,8 @@ horiPts=Table[Table[{x,y},{x,fSpace[minX,maxX,ptsPerLine]}],{y,minY,maxY,(maxY-m
 Return[Re[horiPts]]
 ]
 makeLogHorizontalPts2::usage="makeLogHorizontalPts2[minX_,maxX_,minY_,maxY_,ptsPerLine_,numLines_] 
-returns numLines number of horizontal lines of exponentially spaced points starting from minY to maxY with length maxX-minX with ptsPerLine number of points per line
+returns numLines number of horizontal lines of exponentially spaced points starting from minY to maxY with 
+length maxX-minX with ptsPerLine number of points per line
 NOTE: makeLogHorizontalPts2 is depreciated due to not handling negative minX to positive maxX ranges";
 
 
@@ -216,6 +205,23 @@ Return[pts]
 makeSphereGrid::usage="makeSphereGrid[min,max,ptsPerLine,numLines] makes a grid of sphere spaced points given line bounds of min, max, ptsPerLine, and numLines";
 
 
+(* ::Input::Initialization:: *)
+getImagePts[expr_,pts_]:=Module[{imgPts},
+imgPts={Re[expr /. z -> #[[1]] + I #[[2]]], Im[expr /. z -> #[[1]] + I #[[2]]]}&/@#&/@pts;
+Return[imgPts]]
+getImagePts::usage="getImagePts[expr[z],pts] returns the image points given takes in an expression of z and a list of lists of lists of points";
+
+
+(* ::Input::Initialization:: *)
+plotImage[pts_,expr_,pltRange1_: Automatic,PltRange2_: Automatic,colors_: 1]:=Module[{},
+If[colors==1,colors=RGBColor[1,1,1],colors=colors];
+{
+Graphics[MapThread[{#1,Thick,Line[#2]}&,{colors,pts}],PlotRange->pltRange1,Axes->True,Background->White,ImageSize->{300,300},AxesLabel->{Style["x",Italic],Style["y",Italic]},ImagePadding->20],Graphics[MapThread[{#1,Thick,Line[{Re[expr/.z->#[[1]]+I #[[2]]],Im[expr/.z->#[[1]]+I #[[2]]]}&/@#2]}&,{colors,pts}],PlotRange->PltRange2,Axes->True,Background->White,ImageSize->{300,300},AxesLabel->{Style["u",Italic],Style["v",Italic]},ImagePadding->20]
+}
+]
+plotImage::usage="plotImage[pts,expr,pltRange1:Automatic,PltRange2:Automatic,colors:1] returns a list containing the complex and image plots given a list of lists of lists of points, an expression of z, two plot ranges (can be Automatic), and a list of colors. Note that plotImage doesn't call getImagePts so we can MapThread with color gradients";
+
+
 makeRandomColors[pts_]:=Module[{colors},
 colors=RandomColor[Length[pts]];
 Return[colors]]
@@ -267,7 +273,7 @@ cylinderPts::usage="cylinderPts[pts_] returns a list of taken points ready to be
 (* ::Input::Initialization:: *)
 cylinders[pts_,radius_]:=Module[{},
 Return[Cylinder[#,radius]&/@#&/@cylinderPts[pts]]]
-cylinders::usage="cylinders[pts_,radius_] returns cylinders linearly along the path of the list of points with specified radius"
+cylinders::usage="cylinders[pts_,radius_] returns cylinders linearly along the path of the list of points with specified radius";
 
 
 (* ::Input::Initialization:: *)
@@ -275,7 +281,7 @@ tubes[pts_,radius_]:=Module[{},Tube[#,radius]&/@complexPtsTo3D[pts]]
 tubes::usage="tubes[pts_,radius_] returns tubes linearly
  along the path of the list of points with specified radius. This is
 sometimes used as it gives a better result than cylinders but is less
-reliable"
+reliable";
 
 
 (* ::Input::Initialization:: *)
