@@ -81,7 +81,7 @@ lists=Table[{r Cos[ang],r Sin[ang]},{r,makeSphereSpacedPoints[numCircles]}];
 pts=Transpose[#]&/@lists;
 Return[pts]
 ]
-makeSphereSpacedCirclePoints::usage="makeSphereSpacedCirclePoints[numCircles_,ptsPerCircle_] makeSphereSpacedCirclePoints returns circles based on inverse stereographic projection given a number of circles, and the number of points per circle";
+makeSphereSpacedCirclePoints::usage="makeSphereSpacedCirclePoints[numCircles_,ptsPerCircle_] makeSphereSpacedCirclePoints returns circles spaced by inverse stereographic projection given a number of circles, and the number of points per circle";
 
 
 (* ::Input::Initialization:: *)
